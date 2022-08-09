@@ -20,6 +20,13 @@
     --palette-base5: #eff0f1;
     --palette-secondary0: #345e75;
     --palette-secondary1: #3daee9;
+    --palette-secondary2: #3431e7;
+    --palette-secondary3: #e9a73d;
+    --palette-secondary4: #e6e93d;
+    --palette-secondary5: #79e93d;
+    --palette-secondary6: #c43de9;
+    --palette-secondary7: #e93d3d;
+
 
     --grid-background: #1143c4;
 }
@@ -110,6 +117,10 @@ footer
     max-width: 100%;
 }
 
+div#sidebar{
+    margin: 50 auto;
+}
+
 .row
 {
     height: calc(100% / var(--grid-rows));
@@ -143,32 +154,32 @@ footer
 
 .cell.J
 {
-    background-color: var(--palette-secondary1);
+    background-color: var(--palette-secondary2);
 }
 
 .cell.L
 {
-    background-color: var(--palette-secondary1);
+    background-color: var(--palette-secondary3);
 }
 
 .cell.O
 {
-    background-color: var(--palette-secondary1);
+    background-color: var(--palette-secondary4);
 }
 
 .cell.S
 {
-    background-color: var(--palette-secondary1);
+    background-color: var(--palette-secondary5);
 }
 
 .cell.T
 {
-    background-color: var(--palette-secondary1);
+    background-color: var(--palette-secondary6);
 }
 
 .cell.Z
 {
-    background-color: var(--palette-secondary1);
+    background-color: var(--palette-secondary7);
 }
 
 .cell.current

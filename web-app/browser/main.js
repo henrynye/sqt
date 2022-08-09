@@ -71,13 +71,6 @@ const update_grid = function () {
             }
         }
     );
-
-
-
-    // sidebar_cells.forEach(function (line, line_index) {
-    //     sidebar_cells[line_index] = line.map(function () {return " ";});
-    // });
-
     
     sidebar_cells.forEach(function (line, line_index) {
         line.forEach(function (block, column_index) {

@@ -5,50 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug Module",
-            "type": "pwa-node",
+            "type": "pwa-chrome",
             "request": "launch",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            // You'll need to change this line below to point to your module.
-            "program": "${workspaceFolder}/web-app/common/Tetris.js"
-        },
-        {
-            "name": "Generate Docs",
-            "command": "jsdoc -c jsdoc.json",
-            "request": "launch",
-            "type": "node-terminal"
-        },
-        {
-            "name": "Server ­– Node",
-            "type": "pwa-node",
-            "request": "launch",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "program": "${workspaceFolder}/web-app/server/server.js"
-        },
-        {
-            "name": "Browser – Firefox",
-            "type": "firefox",
-            "request": "launch",
-            "reAttach": true,
-            "reloadOnAttach": true,
-            "url": "http://localhost:8080/index.html",
-            "pathMappings": [
-                {
-                    "url": "http://localhost:8080/common",
-                    "path": "${workspaceFolder}/web-app/common"
-                },
-                {
-                    "url": "http://localhost:8080/",
-                    "path": "${workspaceFolder}/web-app/browser"
-                }
-            ],
-            "preferences": {
-                "security.fileuri.strict_origin_policy": false
-            }
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}"
         }
     ]
 }

@@ -3,14 +3,35 @@ import Tetris from "../common/Tetris.js";
 const grid_columns = Tetris.field_width;
 const grid_rows = Tetris.field_height;
 
+const sidebar_columns = Tetris.sidebar_width;
+const sidebar_rows = Tetris.sidebar_height;
+
 let game = Tetris.new_game();
 
 document.documentElement.style.setProperty("--grid-rows", grid_rows);
 document.documentElement.style.setProperty("--grid-columns", grid_columns);
 
 const grid = document.getElementById("grid");
+const sidebar = document.getElementById("sidebar");
 
 const range = (n) => Array.from({"length": n}, (ignore, k) => k);
+
+const sidebar_cells = range(sidebar_rows).map(function () {
+    const row = document.createElement("div");
+    row.className = "row";
+
+    const rows = range(sidebar_columns).map(function () {
+        const cell = document.createElement("div");
+        cell.className = "cell";
+
+        row.append(cell);
+
+        return cell;
+    });
+
+    sidebar.append(row);
+    return rows;
+})
 
 const cells = range(grid_rows).map(function () {
     const row = document.createElement("div");
@@ -37,18 +58,41 @@ const update_grid = function () {
         });
     });
 
-    Tetris.tetromino_coordiates(game.current_tetromino, game.position).forEach(
+    Tetris.tetromino_coordinates(game.current_tetromino, game.position).forEach(
         function (coord) {
             try {
                 const cell = cells[coord[1]][coord[0]];
                 cell.className = (
                     `cell current ${game.current_tetromino.block_type}`
                 );
+
             } catch (ignore) {
 
             }
         }
     );
+
+
+
+    // sidebar_cells.forEach(function (line, line_index) {
+    //     sidebar_cells[line_index] = line.map(function () {return " ";});
+    // });
+
+    
+    sidebar_cells.forEach(function (line, line_index) {
+        line.forEach(function (block, column_index) {
+            const cell = sidebar_cells[line_index][column_index];
+            cell.className = `cell`;
+        });
+    });
+
+    game.next_tetromino.grid.forEach(function (line, line_index) {
+        line.forEach(function (block, column_index) {
+            const cell = sidebar_cells[line_index][column_index];
+            cell.className = `cell ${block}`;
+        });
+    });
+
 };
 
 // Don't allow the player to hold down the rotate key.

@@ -256,6 +256,25 @@ Tetris.field_visible_height = 20;
  */
 Tetris.field_width = 10;
 
+
+/**
+ * The width of the sidebar.
+ * @constant
+ * @memberof Tetris
+ * @default
+ */
+Tetris.sidebar_width = 4;
+
+/**
+ * The height of the sidebar.
+ * @constant
+ * @memberof Tetris
+ * @default
+ */
+Tetris.sidebar_height = 2;
+
+
+
 const starting_position = [Math.floor(Tetris.field_width / 2) - 1, 0];
 
 //----------------------------------------------------------------------------//
@@ -320,7 +339,7 @@ Tetris.new_game = function () {
  *     The coordinates `[x, y]` of the centre of the tetromino.
  * @returns {number[][]} The List of  coordinates `[x, y]` of each block.
  */
-Tetris.tetromino_coordiates = function (tetromino, position) {
+Tetris.tetromino_coordinates = function (tetromino, position) {
     return tetromino.grid.flatMap(function (row, row_index) {
         return row.flatMap(function (block, column_index) {
             if (block === empty_block) {
@@ -335,25 +354,25 @@ Tetris.tetromino_coordiates = function (tetromino, position) {
 };
 
 const is_blocked_bottom = function (tetromino, position) {
-    return Tetris.tetromino_coordiates(tetromino, position).some(
+    return Tetris.tetromino_coordinates(tetromino, position).some(
         (coord) => coord[1] >= Tetris.field_height
     );
 };
 
 const is_blocked_left = function (tetromino, position) {
-    return Tetris.tetromino_coordiates(tetromino, position).some(
+    return Tetris.tetromino_coordinates(tetromino, position).some(
         (coord) => coord[0] < 0
     );
 };
 
 const is_blocked_right = function (tetromino, position) {
-    return Tetris.tetromino_coordiates(tetromino, position).some(
+    return Tetris.tetromino_coordinates(tetromino, position).some(
         (coord) => coord[0] >= Tetris.field_width
     );
 };
 
 const is_blocked_by_geometry = function (field, tetromino, position) {
-    return Tetris.tetromino_coordiates(tetromino, position).filter(
+    return Tetris.tetromino_coordinates(tetromino, position).filter(
         (coord) => (
             coord[0] >= 0 &&
             coord[0] < Tetris.field_width &&
@@ -528,7 +547,7 @@ const lose = R.set(R.lensProp("game_over"), true);
 
 const lock = function (game) {
     const updated_field = R.clone(game.field);
-    const coords = Tetris.tetromino_coordiates(
+    const coords = Tetris.tetromino_coordinates(
         game.current_tetromino,
         game.position
     );

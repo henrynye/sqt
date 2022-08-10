@@ -160,11 +160,6 @@ footer
     width: calc(100% / var(--grid-columns));
 }
 
-.cell.empty
-{
-    
-}
-
 .cell.I
 {
     background-color: var(--palette-secondary1);

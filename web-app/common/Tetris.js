@@ -26,7 +26,7 @@ const Tetris = Object.create(null);
  * @property {Tetris.Tetromino} next_tetromino The next piece to descend.
  * @property {number[]} position Where in the field is the current tetromino.
  * @property {Tetris.Score} score Information relating to the score of the game.
- * @property {Tetris.Tetronimo} held_tetronimo The piece being held
+ * @property {Tetris.Tetromino} held_tetromino The piece being held
  * @property {boolean} can_hold Whether the current piece can be held
  */
 
@@ -56,6 +56,8 @@ const Tetris = Object.create(null);
  * @typedef {("I" | "J" | "L" | "O" | "S" | "T" | "Z")} Block
  * @memberof Tetris
  */
+
+
 
 /**
  * An empty space where a block could be.
@@ -327,7 +329,7 @@ Tetris.new_game = function () {
         "next_tetromino": next_tetromino,
         "position": starting_position,
         "score": new_score(),
-        "held_tetronimo": null,
+        "held_tetromino": null,
         "can_hold": true
     };
 };
@@ -618,8 +620,8 @@ Tetris.next_turn = function (game) {
         "next_tetromino": next_tetromino,
         "position": starting_position,
         "score": game.score,
-        "held_tetronimo": game.held_tetronimo,
-        "can_hold": game.can_hold
+        "held_tetromino": game.held_tetromino,
+        "can_hold": true
     };
 };
 
@@ -647,13 +649,13 @@ Tetris.hold = function(game){
 
     return {
         "bag": bag,
-        "current_tetromino": game.next_tetromino,
+        "current_tetromino": (game.held_tetromino) ? game.held_tetromino : game.next_tetromino,
         "field": game.field,
         "game_over": false,
         "next_tetromino": next_tetromino,
         "position": starting_position,
         "score": game.score,
-        "held_tetronimo": game.current_tetromino,
+        "held_tetromino": game.current_tetromino,
         "can_hold": false
     };
 };

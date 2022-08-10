@@ -11,6 +11,20 @@ let game = Tetris.new_game();
 document.documentElement.style.setProperty("--grid-rows", grid_rows);
 document.documentElement.style.setProperty("--grid-columns", grid_columns);
 
+//This is how it should be done by I dont like how it looks so I've hacked it in the CSS
+// document.documentElement.style.setProperty("--sidebar-rows", sidebar_rows);
+// document.documentElement.style.setProperty("--sidebar-columns", sidebar_columns);
+
+const tetromino_dict = {
+    'I': Tetris.I_tetromino,
+    'J': Tetris.J_tetromino,
+    'L': Tetris.L_tetromino,
+    'O': Tetris.O_tetromino,
+    'S': Tetris.S_tetromino,
+    'T': Tetris.T_tetromino,
+    'Z': Tetris.Z_tetromino
+};
+
 const grid = document.getElementById("grid");
 const next_grid = document.getElementById("next_grid");
 const hold_grid = document.getElementById("hold_grid");
@@ -104,7 +118,34 @@ const update_grid = function () {
         });
     });
 
-    
+    hold_grid_cells.forEach(function(line,line_index){
+        line.forEach(function(block, column_index){
+            const cell = hold_grid_cells[line_index][column_index];
+            cell.className = 'cell';
+        });
+    });
+
+    if (game.held_tetromino){
+
+        var block_type = game.held_tetromino.block_type;
+        var held_tetromino = tetromino_dict[block_type];
+
+        held_tetromino.grid.forEach(function (line, line_index) {
+            line.forEach(function (block, column_index) {
+                const cell = hold_grid_cells[line_index][column_index];
+                cell.className = `cell ${block}`;
+            });
+        });        
+
+        
+        //This way needs a 4x4 holding grid to work
+        // game.held_tetromino.grid.forEach(function (line, line_index) {
+        //     line.forEach(function (block, column_index) {
+        //         const cell = hold_grid_cells[line_index][column_index];
+        //         cell.className = `cell ${block}`;
+        //     });
+        // });
+    }
 
 };
 

@@ -4,6 +4,10 @@
     --grid-rows: 6;
     --grid-aspect: var(--grid-columns) / var(--grid-rows);
 
+    --sidebar-columns: 4;
+    --sidebar-rows:2;
+    --sidebar-aspect: var(--sidebar-columns) / var(--sidebar-rows);
+
     --footer-height: 48px;
     --header-height: 64px;
     --sidebar-width: clamp(100px, 25%, 300px);
@@ -117,9 +121,17 @@ footer
     max-width: 100%;
 }
 
-div.sidebar{
-    margin: 50 auto;
+.grid.sidebar {
+    aspect-ratio: var(--sidebar-aspect);
 }
+
+.row.sidebar_row {
+    height: calc(100% / var(--sidebar-rows));
+}
+
+/* .row.sidebar_row{
+    display: table-row;
+} */
 
 .row
 {

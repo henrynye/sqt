@@ -19,7 +19,7 @@ const range = (n) => Array.from({"length": n}, (ignore, k) => k);
 
 const next_grid_cells = range(sidebar_rows).map(function () {
     const row = document.createElement("div");
-    row.className = "row";
+    row.className = "row sidebar_row";
 
     const rows = range(sidebar_columns).map(function () {
         const cell = document.createElement("div");

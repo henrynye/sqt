@@ -4,8 +4,8 @@
     --grid-rows: 6;
     --grid-aspect: var(--grid-columns) / var(--grid-rows);
 
-    --sidebar-columns: 4;
-    --sidebar-rows:2;
+    --sidebar-columns: 6;
+    --sidebar-rows: 2;
     --sidebar-aspect: var(--sidebar-columns) / var(--sidebar-rows);
 
     --footer-height: 48px;
@@ -86,6 +86,7 @@ aside
     position: absolute;
     top: var(--header-height);
     width: var(--sidebar-width);
+    text-align: center;
 }
 
 main
@@ -121,17 +122,22 @@ footer
     max-width: 100%;
 }
 
-.grid.sidebar {
+.sidebar .grid {
     aspect-ratio: var(--sidebar-aspect);
 }
 
-.row.sidebar_row {
+.sidebar .row {
     height: calc(100% / var(--sidebar-rows));
 }
 
-/* .row.sidebar_row{
-    display: table-row;
-} */
+.sidebar .cell {
+    width: calc(100% / var(--sidebar-columns));
+}
+
+#next_grid{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
 
 .row
 {

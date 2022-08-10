@@ -19,7 +19,7 @@ const range = (n) => Array.from({"length": n}, (ignore, k) => k);
 
 const next_grid_cells = range(sidebar_rows).map(function () {
     const row = document.createElement("div");
-    row.className = "row sidebar_row";
+    row.className = "row";
 
     const rows = range(sidebar_columns).map(function () {
         const cell = document.createElement("div");
@@ -31,6 +31,23 @@ const next_grid_cells = range(sidebar_rows).map(function () {
     });
 
     next_grid.append(row);
+    return rows;
+})
+
+const hold_grid_cells = range(sidebar_rows).map(function () {
+    const row = document.createElement("div");
+    row.className = "row";
+
+    const rows = range(sidebar_columns).map(function () {
+        const cell = document.createElement("div");
+        cell.className = "cell";
+
+        row.append(cell);
+
+        return cell;
+    });
+
+    hold_grid.append(row);
     return rows;
 })
 
@@ -86,6 +103,8 @@ const update_grid = function () {
             cell.className = `cell ${block}`;
         });
     });
+
+    
 
 };
 

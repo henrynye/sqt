@@ -12,11 +12,12 @@ document.documentElement.style.setProperty("--grid-rows", grid_rows);
 document.documentElement.style.setProperty("--grid-columns", grid_columns);
 
 const grid = document.getElementById("grid");
-const sidebar = document.getElementById("sidebar");
+const next_grid = document.getElementById("next_grid");
+const hold_grid = document.getElementById("hold_grid");
 
 const range = (n) => Array.from({"length": n}, (ignore, k) => k);
 
-const sidebar_cells = range(sidebar_rows).map(function () {
+const next_grid_cells = range(sidebar_rows).map(function () {
     const row = document.createElement("div");
     row.className = "row";
 
@@ -29,7 +30,7 @@ const sidebar_cells = range(sidebar_rows).map(function () {
         return cell;
     });
 
-    sidebar.append(row);
+    next_grid.append(row);
     return rows;
 })
 
@@ -72,16 +73,16 @@ const update_grid = function () {
         }
     );
     
-    sidebar_cells.forEach(function (line, line_index) {
+    next_grid_cells.forEach(function (line, line_index) {
         line.forEach(function (block, column_index) {
-            const cell = sidebar_cells[line_index][column_index];
+            const cell = next_grid_cells[line_index][column_index];
             cell.className = `cell`;
         });
     });
 
     game.next_tetromino.grid.forEach(function (line, line_index) {
         line.forEach(function (block, column_index) {
-            const cell = sidebar_cells[line_index][column_index];
+            const cell = next_grid_cells[line_index][column_index];
             cell.className = `cell ${block}`;
         });
     });

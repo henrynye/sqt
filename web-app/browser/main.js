@@ -112,6 +112,9 @@ document.body.onkeydown = function (event) {
     if (event.key === " ") {
         game = Tetris.hard_drop(game);
     }
+    if (event.key == "c"){
+        game = Tetris.hold(game);
+    }
     update_grid();
 };
 

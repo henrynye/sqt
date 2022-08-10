@@ -26,6 +26,8 @@ const Tetris = Object.create(null);
  * @property {Tetris.Tetromino} next_tetromino The next piece to descend.
  * @property {number[]} position Where in the field is the current tetromino.
  * @property {Tetris.Score} score Information relating to the score of the game.
+ * @property {Tetris.Tetronimo} held_tetronimo The piece being held
+ * @property {boolean} can_hold Whether the current piece can be held
  */
 
 /**
@@ -324,7 +326,9 @@ Tetris.new_game = function () {
         "game_over": false,
         "next_tetromino": next_tetromino,
         "position": starting_position,
-        "score": new_score()
+        "score": new_score(),
+        "held_tetronimo": null,
+        "can_hold": true
     };
 };
 
@@ -613,7 +617,44 @@ Tetris.next_turn = function (game) {
         "game_over": false,
         "next_tetromino": next_tetromino,
         "position": starting_position,
-        "score": game.score
+        "score": game.score,
+        "held_tetronimo": game.held_tetronimo,
+        "can_hold": game.can_hold
+    };
+};
+
+/**
+ * Hold removes the current piece from the field and holds it.
+ * It can only do this for one piece, so if its already holding one, it can't hold another.
+ * If successful, the next piece will be released from the top of the field.
+ * @function
+ * @memberof Tetris
+ * @param {Tetris.Game} game
+ * @returns {Tetris.Game}
+ */
+
+Tetris.hold = function(game){
+
+    if (!game.can_hold){
+        return game;
+    }
+
+    // const locked_field = lock(game);
+
+    // const cleared_field = clear_lines(locked_field);
+
+    const [next_tetromino, bag] = game.bag();
+
+    return {
+        "bag": bag,
+        "current_tetromino": game.next_tetromino,
+        "field": game.field,
+        "game_over": false,
+        "next_tetromino": next_tetromino,
+        "position": starting_position,
+        "score": game.score,
+        "held_tetronimo": game.current_tetromino,
+        "can_hold": false
     };
 };
 

@@ -70,6 +70,8 @@ const Tetris = Object.create(null);
  * @property {Tetris.Tetromino} next_tetromino The next piece to descend.
  * @property {number[]} position Where in the field is the current tetromino.
  * @property {Tetris.Score} score Information relating to the score of the game.
+ * @property {Tetris.Tetronimo} held_tetronimo The tetronimo you are holding
+ * @property {boolean} can_hold Whether holding is allowed
  */
 
 /**
@@ -132,6 +134,15 @@ const Tetris = Object.create(null);
  * but could include other information such as the number of lines cleared.
  * @typedef {number} Score
  * @memberof Tetris
+ */
+
+ /**
+ * Hold removes the current piece from the field and holds it.
+ * It can only do this for one piece, so if its already holding one, it can't hold another.
+ * If successful, the next piece will be released from the top of the field.
+ * @typedef {function} hold
+ * @memberof Tetris
+ * @returns {Tetris.Game}
  */
 
 //----------------------------------------------------------------------------//
